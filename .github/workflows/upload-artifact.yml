@@ -13,15 +13,15 @@ jobs:
   artifact-sample:
     runs-on: ubuntu-latest
     steps:
-      # 成果用の日時を出力
-      - name: artifact date output
+      # 成果用としてアップロードするファイルを作成
+      - name: artifact output
         id: rnd
         run: |
-          echo date "+DATE %Y-%m-%d TIME %H:%M:%S" > date.txt
+          echo "Hello, World" > hello.txt
       # 成果物アップロード
       - name: artifact upload
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: date
-          path: date.txt
+          name: hello
+          path: hello.txt
           retention-days: 3
