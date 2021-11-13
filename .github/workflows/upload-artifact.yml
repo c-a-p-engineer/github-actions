@@ -1,0 +1,27 @@
+# Workflow
+name: upload-artifact-sample
+
+on:
+  # 発動条件 push
+  push:
+    # 発動ブランチ test/*
+    branches:
+      - test/*
+
+# JOB
+jobs:
+  artifact-sample:
+    runs-on: ubuntu-latest
+    steps:
+      # 成果用の日時を出力
+      - name: artifact date output
+        id: rnd
+        run: |
+          echo date "+DATE %Y-%m-%d TIME %H:%M:%S" > date.txt
+      # 成果物アップロード
+      - name: artifact upload
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: date
+          path: date.txt
+          retention-days: 3
